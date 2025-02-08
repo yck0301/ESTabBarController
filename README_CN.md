@@ -1,9 +1,9 @@
 ![ESTabBarController](logo.png)
 
-[![Travis](https://travis-ci.org/eggswift/ESTabBarController.svg?branch=master)](https://travis-ci.org/eggswift/ESTabBarController)
-[![CocoaPods](https://img.shields.io/cocoapods/v/ESTabBarController-swift.svg)](http://cocoapods.org/pods/ESTabBarController-swift)
+[![SwiftPM compatible](https://img.shields.io/badge/SwiftPM-compatible-orange.svg)](#swift-package-manager)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Swift v4](https://img.shields.io/badge/Swift-4-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![CocoaPods](https://img.shields.io/cocoapods/v/ESTabBarController-swift.svg)](http://cocoapods.org/pods/ESTabBarController-swift)
+[![Swift v5](https://img.shields.io/badge/Swift-5-orange.svg?style=flat)](https://developer.apple.com/swift/)
 [![Twitter](https://img.shields.io/badge/Twitter-@lihao_iOS-blue.svg?style=flat)](https://twitter.com/lihao_iOS)
 [![Twitter](https://img.shields.io/badge/Weibo-@李昊_____-orange.svg?style=flat)](http://weibo.com/5120522686/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1)
 [![Chat Gitter.im](https://badges.gitter.im/ESTabBarController/Lobby.svg)](https://gitter.im/ESTabBarController/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -37,7 +37,7 @@
 * Xcode 8 or later
 * iOS 8.0 or later
 * ARC
-* Swift 3 or later
+* Swift 5 or later
 
 ## Demo
 
@@ -72,7 +72,15 @@ open ESTabBarController
 4. ~~ESTabBarItemMoreContentView中的"More"图片目前还未设置到framework中，计划将它转化为创建CGBitmap的代码。~~
 
 
-## 感谢:
+## 赞助
+
+您可以通过查看我们的赞助商页面来支持该项目。 只需单击一下即可：
+
+<a href='https://tracking.gitads.io/?repo=ESTabBarController'><img src="https://images.gitads.io/ESTabBarController" alt="git-ad"/></a>
+<br><i>这则广告来自 <a href="https://tracking.gitads.io/?campaign=gitads&repo=ESTabBarController&redirect=gitads.io">GitAds</a> </i>
+
+
+## 感谢
 
 * [animated-tab-bar](https://github.com/Ramotion/animated-tab-bar) by <http://ramotion.com> 
 * Example中部分图片资源来自 <http://www.iconfont.cn>
@@ -86,7 +94,7 @@ ESTabBarController是由[lihao](mailto:lihao_iOS@hotmail.com)开发和维护。�
 [![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=https://github.com/eggswift/ESTabBarController)
 [![Twitter Follow](https://img.shields.io/twitter/follow/lihao_ios.svg?style=social)](https://twitter.com/lihao_iOS)
 
-## License
+## 许可证
 
 The MIT License (MIT)
 

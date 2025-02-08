@@ -2,7 +2,7 @@
 //  ESTabBar.swift
 //
 //  Created by Vincent Li on 2017/2/8.
-//  Copyright (c) 2013-2018 ESTabBarController (https://github.com/eggswift/ESTabBarController)
+//  Copyright (c) 2013-2020 ESTabBarController (https://github.com/eggswift/ESTabBarController)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -83,6 +83,17 @@ open class ESTabBar: UITabBar {
 
     internal weak var customDelegate: ESTabBarDelegate?
     
+    /// set value > 0 to change tabbar height
+    /// 设置 > 0 的值了来修改TabBar的高度
+    public var tabBarHeight: CGFloat?{
+        didSet{
+            guard tabBarHeight ?? 0 > 0 else{
+                return
+            }
+            setNeedsLayout()
+        }
+    }
+    
     /// tabBar中items布局偏移量
     public var itemEdgeInsets = UIEdgeInsets.zero
     /// 是否设置为自定义布局方式，默认为空。如果为空，则通过itemPositioning属性来设置。如果不为空则忽略itemPositioning,所以当tabBar的itemCustomPositioning属性不为空时，如果想改变布局规则，请设置此属性而非itemPositioning。
@@ -144,6 +155,14 @@ open class ESTabBar: UITabBar {
     open override func layoutSubviews() {
         super.layoutSubviews()
         self.updateLayout()
+    }
+    
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        let defaultSize = super.sizeThatFits(size)
+        if let tabBarHeight, tabBarHeight > 0{
+            return CGSize(width: defaultSize.width, height: tabBarHeight)
+        }
+        return defaultSize
     }
     
     open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
@@ -271,8 +290,8 @@ internal extension ESTabBar /* Actions */ {
             self.addSubview(container)
             self.containers.append(container)
             
-            if let item = item as? ESTabBarItem, let contentView = item.contentView {
-                container.addSubview(contentView)
+            if let item = item as? ESTabBarItem {
+                container.addSubview(item.contentView)
             }
             if self.isMoreItem(idx), let moreContentView = moreContentView {
                 container.addSubview(moreContentView)
@@ -297,7 +316,7 @@ internal extension ESTabBar /* Actions */ {
         }
         
         if let item = item as? ESTabBarItem {
-            item.contentView?.highlight(animated: true, completion: nil)
+            item.contentView.highlight(animated: true, completion: nil)
         } else if self.isMoreItem(newIndex) {
             moreContentView?.highlight(animated: true, completion: nil)
         }
@@ -317,7 +336,7 @@ internal extension ESTabBar /* Actions */ {
         }
         
         if let item = item as? ESTabBarItem {
-            item.contentView?.dehighlight(animated: true, completion: nil)
+            item.contentView.dehighlight(animated: true, completion: nil)
         } else if self.isMoreItem(newIndex) {
             moreContentView?.dehighlight(animated: true, completion: nil)
         }
@@ -345,8 +364,8 @@ internal extension ESTabBar /* Actions */ {
             customDelegate?.tabBar(self, didHijack: item)
             if animated {
                 if let item = item as? ESTabBarItem {
-                    item.contentView?.select(animated: animated, completion: {
-                        item.contentView?.deselect(animated: false, completion: nil)
+                    item.contentView.select(animated: animated, completion: {
+                        item.contentView.deselect(animated: false, completion: nil)
                     })
                 } else if self.isMoreItem(newIndex) {
                     moreContentView?.select(animated: animated, completion: {
@@ -360,19 +379,19 @@ internal extension ESTabBar /* Actions */ {
         if currentIndex != newIndex {
             if currentIndex != -1 && currentIndex < items?.count ?? 0{
                 if let currentItem = items?[currentIndex] as? ESTabBarItem {
-                    currentItem.contentView?.deselect(animated: animated, completion: nil)
+                    currentItem.contentView.deselect(animated: animated, completion: nil)
                 } else if self.isMoreItem(currentIndex) {
                     moreContentView?.deselect(animated: animated, completion: nil)
                 }
             }
             if let item = item as? ESTabBarItem {
-                item.contentView?.select(animated: animated, completion: nil)
+                item.contentView.select(animated: animated, completion: nil)
             } else if self.isMoreItem(newIndex) {
                 moreContentView?.select(animated: animated, completion: nil)
             }
         } else if currentIndex == newIndex {
             if let item = item as? ESTabBarItem {
-                item.contentView?.reselect(animated: animated, completion: nil)
+                item.contentView.reselect(animated: animated, completion: nil)
             } else if self.isMoreItem(newIndex) {
                 moreContentView?.reselect(animated: animated, completion: nil)
             }
